@@ -1,0 +1,139 @@
+/* 
+  Localizable.strings
+  Daily
+
+  Created by kasoly on 2022/3/22.
+  
+*/
+
+"AppName" = "布丁日常";
+"Review"="回顾";
+"Daily"="日常";
+"Settings"="设置";
+
+"Search"="搜索";
+"Cancel"="取消";
+"Done"="完成";
+"Delete"="删除";
+"Pin"="置顶";
+"Confirm"="确定";
+"Update"="更新";
+
+"OK"="好的";
+"Succ"="成功";
+"Fail"="失败";
+"Language"="语言";
+
+"Unknown"="未知";
+"CleanUp"="清空数据";
+"RecordTime"="记录时间";
+"SystemSettings"="系统设置";
+"Preferences"="偏好";
+"LunarCalendar"="农历日历";
+
+"DailyReminder"="每日";
+"WeeklyReminder"="每周";
+"MonthlyReminder"="每月";
+"HourlyReminder"="每小时";
+"Day"="天";
+"Week"="周";
+"Month"="月";
+"Year"="年";
+
+"LastMonth"="本月";
+"LastQuarter"="最近一季度";
+"LastHalfYear"="最近半年";
+"LastYear"="最近一年";
+
+
+"Record"="记录";
+"Unit"="单位";
+"DisableNotifications"="禁用通知";
+"RemoveAllNotifications"="删除当前所有通知";
+"DisplayAndBrightness" ="显示与亮度";
+"Dark"="暗黑";
+"Light"="明亮";
+"FollowSystem"="跟随系统";
+"Language"="语言";
+"English"="英文";
+"ChineseSimplified"="中文简体";
+"LearnMore"="了解更多";
+"SuggestionsFeedback"="建议和反馈";
+"ThemeSettings"="主题设置";
+"SystemSettings"="系统设置";
+"NotificationSettings"= "通知设置";
+"HaveALook"="看一看";
+"SetRecordItem"="设置记录项";
+"EventsYouWantToRecord"="记录项是你希望记录的事件";
+"RecordName"="记录项名称";
+"IconColor"="图标颜色";
+"SelectIcon"="选择图标";
+"RecordTagDescription"="记录标签是你需要记录的具体数据";
+"AddTags"="添加标签";
+"Details"="详情";
+"TagName"="标签名称";
+"TagType"="标签类型";
+"OptionName"="选项名称";
+"More"="更多";
+"RegularReminder"="定时提醒";
+"ReminderType"="提醒类型";
+"Text"="文本";
+"Number"="数字";
+"TimeRange"="时间段";
+"Option"="选项";
+"StartTime"="开始时间";
+"EndTime"="结束时间";
+"Start"="开始";
+"End"="结束";
+
+"TotalTimes"="共记录%lld 次";
+"RecordedTimesSincePast"="共记录 %lld 次, 开始于 %@";
+"RecordNameArg"="记录 %@";
+"DeleteTopic"="删除 %@";
+"PinTopic"="置顶 %@";
+"EditTopic"="编辑 %@";
+"OperationNotice"="轻点查看详情，双击添加记录，长按操作记录";
+"Operation"="操作";
+"OperationDeleteNotice"="删除后数据不可恢复，请谨慎操作";
+"EditRecord"="编辑记录";
+"AddRecord"="添加记录";
+"RecordTime"="记录时间";
+"SettingError"="设置错误";
+"NoRecord"="暂无记录";
+"NoRecordAndCreate"="暂无记录项,点击右上角+添加一个吧";
+"CreateTime"="开始于";
+"Repeat"="重复";
+"ReminderTime"="提醒时间";
+"ReminderTimes"="第%lld次提醒时间";
+"ReminderHourlyTip"="每小时的第%@分钟提醒";
+"ReminderDailyTip"="每日第%@次提醒";
+"ReminderWeeklyTip"="每星期的%@提醒";
+"ReminderMonthlyTip"="每月的第%@天提醒";
+"IsTimeForReminderHourly"="%@时间到了，每小时%lld分钟提醒";
+"IsTimeForReminderDaily"="%@时间到了， 每天第%lld次提醒";
+"IsTimeForReminderWeekly"="%@时间到了，每周%@第%lld次提醒";
+"IsTimeForReminderMonthly"="%@时间到了，每月%@号第%lld次提醒";
+
+
+
+"VIP" ="会员";
+"NoVIP"="非会员";
+"VIPService"="会员服务";
+"VIPSubscription"="会员订阅";
+"VIPInformation"="会员信息";
+"VIPSubscriptionInformation"="会员订阅信息";
+"NoVIPSubscriptionInformation"="暂无会员订阅信息";
+"ResumePurchase"="恢复购买";
+
+"CanMakePayments"="暂时没有可以支付的账户";
+"iCloudSync"="iCloud同步";
+"AppStoreCouldNotVerifyYourSubscriptionStatus"="应用商店无法验证你的订阅状态";
+"AppStoreRefundedYourSubscription"="应用商店已于 %@ 将您的订阅退还给 %@";
+"AppStoreCouldNotConfirmYourBillingInformation"="应用商店无法确认您的 %@ 账单信息。请验证您的账单信息以恢复服务";
+"AppStoreCouldNotConfirmYourBillingInformationVerifyService"="应用商店无法确认您的%@账单信息。请验证您的账单信息，以便在 %@ 之后继续服务";
+"CurrentlySubscribed" ="您目前已订阅 %@";
+"NextBillingDate"="下一个计费日期：%@";
+"SubscriptionBegin"="您对 %@ 的订阅将在 %@ 时开始。";
+"PurchaseCouldNotBeVerified"="应用商店无法验证您的购买。 ";
+
+

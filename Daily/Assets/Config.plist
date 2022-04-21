@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Icons</key>
+	<array>
+		<string>sun.max</string>
+		<string>sunrise</string>
+		<string>sunset</string>
+		<string>moon</string>
+		<string>moon.stars</string>
+		<string>cloud</string>
+		<string>cloud.rain</string>
+		<string>cloud.snow</string>
+		<string>cloud.sleet</string>
+		<string>smoke</string>
+		<string>wind</string>
+		<string>snowflake</string>
+		<string>message</string>
+		<string>crown</string>
+		<string>clock</string>
+		<string>heart</string>
+		<string>scissors</string>
+		<string>seal</string>
+		<string>airplane</string>
+		<string>airplane.arrival</string>
+		<string>airplane.departure</string>
+		<string>car</string>
+		<string>car.2</string>
+		<string>bus</string>
+		<string>tram</string>
+		<string>bicycle</string>
+		<string>scooter</string>
+		<string>figure.walk</string>
+		<string>eyes</string>
+		<string>quote.opening</string>
+		<string>quote.closing</string>
+		<string>trash</string>
+		<string>scribble.variable</string>
+		<string>paperplane</string>
+		<string>folder</string>
+		<string>doc.text</string>
+		<string>book</string>
+		<string>command</string>
+		<string>power</string>
+		<string>thermometer</string>
+		<string>face.smiling</string>
+		<string>hand.thumbsup</string>
+		<string>hands.clap</string>
+		<string>leaf</string>
+		<string>ant</string>
+		<string>hare</string>
+		<string>tortoise</string>
+		<string>cross.case</string>
+		<string>waveform.path.ecg.rectangle</string>
+		<string>1.circle</string>
+		<string>2.circle</string>
+		<string>3.circle</string>
+	</array>
+</dict>
+</plist>

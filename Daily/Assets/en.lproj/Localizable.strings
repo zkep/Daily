@@ -1,0 +1,135 @@
+/* 
+  Localizable.strings
+  Daily
+
+  Created by kasoly on 2022/3/22.
+  
+*/
+
+"AppName" = "Daily";
+"Review"="Review";
+"Daily"="Daily";
+"Settings"="Settings";
+
+"Search"="Search";
+"Cancel"="Cancel";
+"Done"="Done";
+"Delete"="Delete";
+"Pin"="Pin";
+"Confirm"="Confirm";
+"Update"="Update";
+
+"OK"="OK";
+"Succ"="Succ";
+"Fail"="Fail";
+"Language"="Language";
+
+"Unknown"="Unknown";
+"CleanUp"="Clean Up";
+"RecordTime"="Record Time";
+"SystemSettings"="System Settings";
+"Preferences"="Preferences";
+"LunarCalendar"="Lunar Calendar";
+
+"DailyReminder"="Daily";
+"WeeklyReminder"="Weekly";
+"MonthlyReminder"="Monthly";
+"HourlyReminder"="Hourly";
+"Day"="day";
+"Week"="week";
+"Month"="month";
+"Year"="year";
+
+"LastMonth"="This Month";
+"LastQuarter"="Quarter";
+"LastHalfYear"="Half Year";
+"LastYear"="Year";
+
+"Record"="Record";
+"Unit"="Unit";
+"DisableNotifications"="Disable notifications";
+"RemoveAllNotifications"="Remove All Current Notifications";
+"DisplayAndBrightness" ="Display & Brightness";
+"Dark"="Dark";
+"Light"="Light";
+"FollowSystem"="Follow System";
+"Language"="Language";
+"English"="English";
+"ChineseSimplified"="Chinese，Simplified";
+"LearnMore"="Learn more";
+"SuggestionsFeedback"="Suggestions & Feedback";
+"ThemeSettings"="Theme Settings";
+"SystemSettings"="System Settings";
+"NotificationSettings"= "Notification settings";
+"HaveALook"="have a look";
+"SetRecordItem"="Set Record Item";
+"EventsYouWantToRecord"="Events you want to record";
+"RecordName"="Record Name";
+"IconColor"="Icon Color";
+"SelectIcon"="Select Icon";
+"RecordTagDescription"="The record tag is the specific data you need to record";
+"AddTags"="Add Tags";
+"Details"="Details";
+"TagName"="Tag Name";
+"TagType"="Tag Type";
+"OptionName"="Option Name";
+"More"="More";
+"RegularReminder"="Regular Reminder";
+"ReminderType"="Reminder Type";
+"Text"="Text";
+"Number"="Number";
+"TimeRange"="Time Range";
+"Option"="Options";
+"StartTime"="Start Time";
+"EndTime"="End Time";
+"Start"="Start";
+"End"="End";
+
+"TotalTimes"="%lld times in total";
+"RecordedTimesSincePast"="Recorded %lld times since %@";
+"RecordNameArg"="Record Name %@";
+"DeleteTopic"="Delete %@";
+"PinTopic"="Pin %@";
+"EditTopic"="Edit %@";
+"OperationNotice"=" Click to view the details\n Double-click to add a record\n Long press the operation record";
+"Operation"="Operation";
+"OperationDeleteNotice"="The data cannot be recovered after deletion. Please be careful";
+"EditRecord"="Edit Record";
+"AddRecord"="Add Record";
+"RecordTime"="Record Time";
+"SettingError"="Setting error";
+"NoRecord"="No record";
+"NoRecordAndCreate"="No record yet. Click + add one in the upper right corner";
+"CreateTime"="Create Time";
+"Repeat"="Repeat";
+"ReminderTime"="Reminder Time";
+"ReminderTimes"="%lld th Reminder Time";
+"ReminderHourlyTip"="%@ minute reminders per hour";
+"ReminderDailyTip"="%@th daily Reminder";
+"ReminderWeeklyTip"="%@  weekly reminder";
+"ReminderMonthlyTip"="Reminder on the %@  days of each month";
+
+"IsTimeForReminderHourly"="Is time for %@ . %lld minute reminders per hour";
+"IsTimeForReminderDaily"="Is time for %@ .  %lld th daily reminder";
+"IsTimeForReminderWeekly"="Is time for %@ . %@ weekly %lld th reminder";
+"IsTimeForReminderMonthly"="Is time for %@ . %lld th reminder on the %@  days of each month";
+
+"VIP" ="VIP";
+"NoVIP"="No VIP";
+"VIPService"="VIP Service";
+"VIPSubscription"="VIP Subscription";
+"VIPInformation"="VIP Information";
+"VIPSubscriptionInformation"="VIP Subscription Information";
+"NoVIPSubscriptionInformation"="No VIP Subscription Information";
+"ResumePurchase"="Resume purchase";
+
+"CanMakePayments"="Not Can Make Payments";
+"iCloudSync"="iCloud Sync";
+"AppStoreCouldNotVerifyYourSubscriptionStatus"="The App Store could not verify your subscription status.";
+"AppStoreRefundedYourSubscription"="The App Store refunded your subscription to %@ on %@";
+"AppStoreCouldNotConfirmYourBillingInformation"="The App Store could not confirm your billing information for %@ . Please verify your billing information to resume service";
+"AppStoreCouldNotConfirmYourBillingInformationVerifyService"="The App Store could not confirm your billing information for %@ . Please verify your billing information to continue service after %@ .";
+"CurrentlySubscribed" ="You are currently subscribed to %@ .";
+"NextBillingDate"="Next billing date: %@";
+"SubscriptionBegin"="Your subscription to %@ will begin when your current subscription expires on %@ .";
+"PurchaseCouldNotBeVerified"="Your purchase could not be verified by the App Store.";
