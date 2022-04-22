@@ -135,7 +135,6 @@ class TopicViewModel: ObservableObject {
     }
     
     
-    
     func deleteItem(id: Int32) {
         let instance = Item.fetchOne(id: id)
         if ((instance?.delete()) == nil) {
@@ -155,10 +154,6 @@ class TopicViewModel: ObservableObject {
     
     func setPinTopic(id: Int32, pin: Int64) {
         Topic.fetchOne(id: id)?.update(of: ["pin": pin])
-    }
-    
-    func fetchTopicCount() -> Int {
-        return  Topic.count()
     }
     
     

@@ -192,6 +192,7 @@ struct TopicView: View {
                    if newValue {
                        NotificationManger.getNotificationSettings()
                    }
+                   // 收起键盘
                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                    if self.notify.time.count == 0 {
                        self.notify.time.append(Date())
@@ -201,10 +202,7 @@ struct TopicView: View {
                if isBellMode {
                    Button {
                        showNotifyRate.toggle()
-                       if showNotifyRate {
-                           UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                       }
-                       if self.notify.type == .weeklyReminder {
+                       if self.notify.type == .weeklyReminder{
                            let week = Calendar.current.component(.weekday, from: Date()) - 1
                            if !self.notify.week.contains(week) {
                                self.notify.week.insert(week)
@@ -243,7 +241,7 @@ struct TopicView: View {
                        }
                        ForEach(Array(self.notify.time.enumerated()),  id: \.offset) { i, _ in
                            DatePicker(selection: self.$notify.time[self.notify.time.count-i-1], in: dateRange, displayedComponents: .hourAndMinute) {
-                               Text("ReminderTimes".localized(lang: lang, self.notify.time.count-i))
+                               Text("第\(self.notify.time.count-i)次提醒")
                           }
                        }
                    }
@@ -378,7 +376,7 @@ struct TopicView: View {
              tips.append(" ,")
          }
          tips.removeLast()
-         return Text("ReminderHourlyTip".localized(lang: lang, tips)).multilineTextAlignment(.leading)
+          return Text("ReminderHourlyTip".localized(lang: lang, tips)).multilineTextAlignment(.leading)
       }
 
     
@@ -410,7 +408,7 @@ struct TopicView: View {
                 }
                 
                 if isBellMode {
-                    NotificationManger.addUserNotification(topicName: self.topicName, lang: lang, notify: self.notify)
+                    NotificationManger.addUserNotification(topicName: self.topicName, notify: self.notify)
                 }
                 
                 dismiss()

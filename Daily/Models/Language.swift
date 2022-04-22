@@ -43,11 +43,11 @@ var IsChinese: Bool {
 extension String {
     
     func localized(lang: Language = .english,  _ args: CVarArg...) -> String {
-       guard let path = Bundle.main.path(forResource: lang.description, ofType: "lproj"), let bundle = Bundle(path: path) else {
+      guard let path = Bundle.main.path(forResource: lang.description, ofType: "lproj"), let bundle = Bundle(path: path) else {
          return self
-       }
-       let format =  NSLocalizedString(self, bundle: bundle, comment: "\(self)_comment")
-       return String(format: format, arguments: args)
-    }
+      }
+      let format =  NSLocalizedString(self, bundle: bundle, comment: "\(self)_comment")
+      return String(format: format, arguments: args)
+   }
     
 }

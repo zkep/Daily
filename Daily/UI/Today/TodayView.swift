@@ -35,14 +35,13 @@ struct TodayView: View {
                  }
                  footer
              }
-             .accentColor(.primary)
              .coordinateSpace(name: "scroll")
              .padding(10)
              .safeAreaInset(edge: .top, content: {
                  Color.clear.frame(height: 70)
              })
              .overlay(
-                NavigationBar(title: "Review".localized(lang: lang), searchContent: search, topicVM: topicVM,  hasScrolled: $hasScrolled)
+                NavigationBar(title: "Today".localized(lang: lang), searchContent: search, topicVM: topicVM,  hasScrolled: $hasScrolled)
              )
              .sheet(item: self.$singleTopicClick, content: { topic in
                   TopicItemView(topicVM: topicVM, topic: topic)
@@ -117,7 +116,12 @@ struct TodayView: View {
                  .offset(x: -8)
                 
                 Spacer()
+            
             }
+            Text("WhatDidYouDoToday")
+                .font(.footnote)
+                .foregroundColor(.green)
+                .padding(.horizontal)
         }
     }
     
