@@ -28,7 +28,7 @@ class IAPManager:  ObservableObject {
       
       private var transactionListener: Task<Void, Error>? = nil
 
-      private var productIdToVipLevel: [String: String] 
+      private var productIdToVipLevel: [String: String]
     
       init() {
          if let path = Bundle.main.path(forResource: "Products", ofType: "plist"),

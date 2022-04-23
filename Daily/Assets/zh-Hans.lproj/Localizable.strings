@@ -7,7 +7,7 @@
 */
 
 "AppName" = "布丁日常";
-"Today"="今日";
+"Review"="回顾";
 "Daily"="日常";
 "Settings"="设置";
 
@@ -28,7 +28,8 @@
 "CleanUp"="清空数据";
 "RecordTime"="记录时间";
 "SystemSettings"="系统设置";
-
+"Preferences"="偏好";
+"LunarCalendar"="农历日历";
 
 "DailyReminder"="每日";
 "WeeklyReminder"="每周";
@@ -62,7 +63,6 @@
 "SystemSettings"="系统设置";
 "NotificationSettings"= "通知设置";
 "HaveALook"="看一看";
-"WhatDidYouDoToday"="今天做了什么!";
 "SetRecordItem"="设置记录项";
 "EventsYouWantToRecord"="记录项是你希望记录的事件";
 "RecordName"="记录项名称";
@@ -100,13 +100,22 @@
 "RecordTime"="记录时间";
 "SettingError"="设置错误";
 "NoRecord"="暂无记录";
+"NoRecordAndCreate"="暂无记录项,点击右上角+添加一个吧";
 "CreateTime"="开始于";
 "Repeat"="重复";
 "ReminderTime"="提醒时间";
-"ReminderHourlyTip"="每小时的第 %@ 分钟提醒";
-"ReminderWeeklyTip"="每星期的 %@ 提醒";
-"ReminderMonthlyTip"="每月的第 %@ 天提醒";
-"RecordTagDesc"="标签是每次录制时需要填写的关键信息，\n可以是文本、金额、日期和其他您关注的数据";
+"ReminderTimes"="第%lld次提醒时间";
+"ReminderHourlyTip"="每小时的第%@分钟提醒";
+"ReminderDailyTip"="每日第%@次提醒";
+"ReminderWeeklyTip"="每星期的%@提醒";
+"ReminderMonthlyTip"="每月的第%@天提醒";
+"IsTimeForReminderHourly"="%@时间到了，每小时%lld分钟提醒";
+"IsTimeForReminderDaily"="%@时间到了， 每天第%lld次提醒";
+"IsTimeForReminderWeekly"="%@时间到了，每周%@第%lld次提醒";
+"IsTimeForReminderMonthly"="%@时间到了，每月%@号第%lld次提醒";
+
+
+
 "VIP" ="会员";
 "NoVIP"="非会员";
 "VIPService"="会员服务";

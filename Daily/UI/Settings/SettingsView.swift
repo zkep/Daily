@@ -14,53 +14,63 @@ struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) private var moc
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
-    @State var isPurchased: Bool = false
     
     @State private var showWebView = false
     @AppStorage("appColorScheme") var appColorScheme: Int = 0
     @AppStorage("appLanguage") var lang: Language = IsChinese ? .chinese: .english
-   
+    @AppStorage("icloud_sync") var icloudSync = true
+    @AppStorage("lunarCalendar") var lunarCalendar = false
+    
+    @State var isPurchased: Bool = false
+    
+    
     var body: some View {
         NavigationView  {
-            List {
-                Section(header: Text("LearnMore")) {
-                    Button {
-                        showWebView.toggle()
-                    } label: {
-                        Text("SuggestionsFeedback")
+             List {
+                   Section(header: Text("LearnMore")) {
+                        Button {
+                            showWebView.toggle()
+                        } label: {
+                            Text("SuggestionsFeedback")
+                        }
+                        .sheet(isPresented: $showWebView) {
+                            SupportView()
+                        }
                     }
-                    .sheet(isPresented: $showWebView) {
-                        SupportView()
+                     
+        
+                    Section(header: Text("SystemSettings")) {
+                         Picker("DisplayAndBrightness", selection: self.$appColorScheme) {
+                            ForEach(appColorSchemes.allCases, id: \.self){ item in
+                                Text(item.name.localized(lang: lang)).tag(item.rawValue)
+                            }
+                         }
+                         Picker("Language", selection: self.$lang) {
+                            ForEach(Language.allCases, id: \.self){ item in
+                                Text(item.name.localized(lang: lang)).tag(item.rawValue)
+                            }
+                         }
+                        
+                     }
+                     
+                     Section(header: Text("Preferences")) {
+                         Toggle(isOn: $lunarCalendar) {
+                             Text("LunarCalendar")
+                         }
                     }
-                }
-                
-                Section(header: Text("SystemSettings")) {
-                    Picker("DisplayAndBrightness", selection: self.$appColorScheme) {
-                        ForEach(appColorSchemes.allCases, id: \.self){ item in
-                           Text(item.name.localized(lang: lang)).tag(item.rawValue)
+                    
+                    Section(header: Text("VIP")) {
+                       NavigationLink(destination: VipView()) {
+                           Text("VIPService")
                        }
                     }
-                    Picker("Language", selection: self.$lang) {
-                        ForEach(Language.allCases, id: \.self){ item in
-                            Text(item.name.localized(lang: lang)).tag(item.rawValue)
-                       }
-                    }
-                }
-                
-                Section(header: Text("VIP")) {
-                    NavigationLink(destination: VipView()) {
-                        Text("VIPService")
-                    }
-                }
-            }
-            .accentColor(.primary)
-            .listStyle(.insetGrouped)
-            .navigationTitle("Settings")
-            .navigationBarTitleDisplayMode(.automatic)
-        }
+             }
+             .accentColor(.primary)
+             .listStyle(.insetGrouped)
+             .navigationTitle("Settings")
+             .navigationBarTitleDisplayMode(.automatic)
+         }
     }
-    
-
     
 }
 

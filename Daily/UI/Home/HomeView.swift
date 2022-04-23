@@ -18,7 +18,7 @@ struct HomeView: View {
     @State  private var  singleClick: Topic? = nil
     @State  private var  editSheet:  Topic? = nil
     @State  var query = ""
-    
+   
     @AppStorage("appLanguage") var lang: Language = IsChinese ? .chinese: .english
     
     var body: some View {
@@ -29,12 +29,13 @@ struct HomeView: View {
                  
                  lazyVGridView
                  
-                 if !appInfo.showSearch {
-                     Text("OperationNotice")
-                          .font(.footnote)
-                          .foregroundStyle(.linearGradient(colors: [.primary, .primary.opacity(0.5)], startPoint: .topLeading, endPoint: .bottomTrailing))
-                          .multilineTextAlignment(.leading)
-                          .padding(.top, 20)
+                 
+                 if !appInfo.showSearch && topicVM.fetchTopicCount() > 0 {
+                    Text("OperationNotice")
+                        .font(.footnote)
+                        .foregroundStyle(.linearGradient(colors: [.primary, .primary.opacity(0.5)], startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .multilineTextAlignment(.leading)
+                        .padding(.top, 20)
                  }
              }
              .coordinateSpace(name: "scroll")
@@ -82,85 +83,95 @@ struct HomeView: View {
     
    
     var lazyVGridView:  some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 300),spacing: 20)], spacing: 10) {
+        ZStack {
             let topics = topicVM.fetchTopics(searchText: self.query, isSearch: appInfo.showSearch)
-            ForEach(Array(topics.enumerated()), id: \.offset) { index, item in
-                Section {
-                HStack(alignment: .top, spacing: 5) {
-                    Spacer()
-                   
-                    iconView(icon: item.icon ?? "", tint: Color(hex: item.tint ?? ""))
-                    
-                    Spacer()
-                       
-                    ctxView(name: item.name ?? "", ctime: Date().getTimeIntervalDate(interval: item.ctime) ?? Date())
-                    
-                    footer(tid: item.id)
-                    
-                    Spacer()
-                }
-                .background(.ultraThinMaterial)
-                .cornerRadius(20)
-                .onTapGesture(count: 2) {
-                    self.doubleClick = item
-                }
-                .onTapGesture(count: 1) {
-                    self.singleClick = item
-                }
-                .onLongPressGesture {
-                    self.longPress = item
-                }
-              }
-            }
-        }
-        .padding(.horizontal, 20)
-        .sheet(item: self.$doubleClick, content: { item in
-             ItemVeiw(topicVM: topicVM,  topic: item, tags: ParseTags(tags: item.tags ?? ""))
-        })
-        .sheet(item: self.$singleClick, content: { item in
-             TopicItemView(topicVM: topicVM, topic: item)
-         })
-        .sheet(item: self.$editSheet, content: { item in
-            TopicView(
-                topicVM:    topicVM,
-                topicID:    item.id,
-                topicName:  item.name ?? "",
-                topicIcon:  item.icon ?? "",
-                isBellMode: item.notify!.isEmpty ? false : true,
-                tags:      ParseTags(tags: item.tags ?? ""),
-                notify:    ParseNotify(str: item.notify ?? ""),
-                oldNotify: ParseNotify(str: item.notify ?? ""),
-                iconColor: Color(hex: item.tint ?? "")
-            )
-         })
-        .actionSheet(item: self.$longPress, content: { item in
-            ActionSheet(title: Text("Operation".localized(lang: lang)),
-                message: Text("OperationDeleteNotice".localized(lang: lang)),
-                buttons: [
-                    .cancel(),
-                    .destructive(
-                        Text("PinTopic".localized(lang: lang, item.name ?? "")),
-                        action: {
-                            topicVM.setPinTopic(id: item.id, pin: Int64(Date().timeIntervalSince1970))
+            if topics.count == 0 {
+                Text(appInfo.showSearch ? "" : "NoRecordAndCreate" )
+                     .font(.footnote)
+                     .foregroundStyle(.linearGradient(colors: [.primary, .primary.opacity(0.5)], startPoint: .topLeading, endPoint: .bottomTrailing))
+                     .multilineTextAlignment(.leading)
+                     .padding(.top, 20)
+            } else {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 600),spacing: 20)], spacing: 10) {
+                    ForEach(Array(topics.enumerated()), id: \.offset) { index, item in
+                        Section {
+                        HStack(alignment: .top, spacing: 5) {
+                            Spacer()
+                           
+                            iconView(icon: item.icon ?? "", tint: Color(hex: item.tint ?? ""))
+                            
+                            Spacer()
+                               
+                            ctxView(name: item.name ?? "", ctime: Date().getTimeIntervalDate(interval: item.ctime) ?? Date())
+                            
+                            footer(tid: item.id)
+                            
+                            Spacer()
                         }
-                    ),
-                    .destructive(
-                        Text("EditTopic".localized(lang: lang, item.name ?? "")),
-                        action: {
-                            self.editSheet = item
+                        .background(.ultraThinMaterial)
+                        .cornerRadius(20)
+                        .onTapGesture(count: 2) {
+                            self.doubleClick = item
                         }
-                    ),
-                    .default(
-                        Text("DeleteTopic".localized(lang: lang, item.name ?? "")),
-                        action: {
-                            topicVM.deleteTopic(id: item.id)
-                            NotificationManger.removeUserNotification(notify: ParseNotify(str: item.notify ?? ""))
+                        .onTapGesture(count: 1) {
+                            self.singleClick = item
                         }
-                     )
-                ]
-            )
-         })
-    }
+                        .onLongPressGesture {
+                            self.longPress = item
+                        }
+                      }
+                    }
+                }
+                .padding(.horizontal, 20)
+                .sheet(item: self.$doubleClick, content: { item in
+                     ItemVeiw(topicVM: topicVM,  topic: item, tags: ParseTags(tags: item.tags ?? ""))
+                })
+                .sheet(item: self.$singleClick, content: { item in
+                     TopicItemView(topicVM: topicVM, topic: item)
+                 })
+                .sheet(item: self.$editSheet, content: { item in
+                    TopicView(
+                        topicVM:    topicVM,
+                        topicID:    item.id,
+                        topicName:  item.name ?? "",
+                        topicIcon:  item.icon ?? "",
+                        isBellMode: item.notify!.isEmpty ? false : true,
+                        tags:      ParseTags(tags: item.tags ?? ""),
+                        notify:    ParseNotify(str: item.notify ?? ""),
+                        oldNotify: ParseNotify(str: item.notify ?? ""),
+                        iconColor: Color(hex: item.tint ?? "")
+                    )
+                 })
+                .actionSheet(item: self.$longPress, content: { item in
+                    ActionSheet(title: Text("Operation".localized(lang: lang)),
+                        message: Text("OperationDeleteNotice".localized(lang: lang)),
+                        buttons: [
+                            .cancel(),
+                            .destructive(
+                                Text("PinTopic".localized(lang: lang, item.name ?? "")),
+                                action: {
+                                    topicVM.setPinTopic(id: item.id, pin: Int64(Date().timeIntervalSince1970))
+                                }
+                            ),
+                            .destructive(
+                                Text("EditTopic".localized(lang: lang, item.name ?? "")),
+                                action: {
+                                    self.editSheet = item
+                                }
+                            ),
+                            .default(
+                                Text("DeleteTopic".localized(lang: lang, item.name ?? "")),
+                                action: {
+                                    topicVM.deleteTopic(id: item.id)
+                                    NotificationManager.removeUserNotification(notify: ParseNotify(str: item.notify ?? ""))
+                                }
+                             )
+                        ]
+                    )
+                })
+             }
+         }
+     }
   
     
     func iconView(icon: String = "sun.max.fill", tint: Color = .teal) -> some View {

@@ -62,23 +62,6 @@ class WebViewModel: ObservableObject {
         loadRequest()
     }
     
- 
-    init(url: String, nickname: String, avatar: String, openid: String) {
-        let configuration = WKWebViewConfiguration()
-        configuration.websiteDataStore = .nonPersistent()
-        webView = WKWebView(frame: .zero, configuration: configuration)
-        navigationDelegate = WebViewNavigationDelegate()
-        webView.navigationDelegate = navigationDelegate
-        setupBindings()
-        let url = URL(string: url) ?? URL(fileURLWithPath: "")
-        self.request = URLRequest(url: url)
-        self.request.httpMethod = "POST"
-        self.request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let str = String(format: "nickname=%@&avatar=%@&openid=%@", nickname, avatar, openid)
-        self.request.httpBody = str.data(using: .utf8)!
-        loadRequest()
-    }
-    
     
     private func setupBindings() {
         webView.publisher(for: \.canGoBack)

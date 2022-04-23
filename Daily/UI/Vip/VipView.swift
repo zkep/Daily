@@ -15,7 +15,7 @@ struct VipView: View {
     @State var status: Product.SubscriptionInfo.Status?
     @State var errorTitle = ""
     @State var isShowingError: Bool = false
-    var productid = "vip.auto.renewable.mothly"
+    var productid = "vip.yearly.auto.renewable"
     @AppStorage("icloud_sync") var icloudSync = false
     
     var body: some View {

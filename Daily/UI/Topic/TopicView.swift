@@ -190,9 +190,8 @@ struct TopicView: View {
                }
                .onChange(of: isBellMode, perform: { newValue in
                    if newValue {
-                       NotificationManger.getNotificationSettings()
+                       NotificationManager.getNotificationSettings()
                    }
-                   // 收起键盘
                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                    if self.notify.time.count == 0 {
                        self.notify.time.append(Date())
@@ -202,7 +201,10 @@ struct TopicView: View {
                if isBellMode {
                    Button {
                        showNotifyRate.toggle()
-                       if self.notify.type == .weeklyReminder{
+                       if showNotifyRate {
+                           UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                       }
+                       if self.notify.type == .weeklyReminder {
                            let week = Calendar.current.component(.weekday, from: Date()) - 1
                            if !self.notify.week.contains(week) {
                                self.notify.week.insert(week)
@@ -241,7 +243,7 @@ struct TopicView: View {
                        }
                        ForEach(Array(self.notify.time.enumerated()),  id: \.offset) { i, _ in
                            DatePicker(selection: self.$notify.time[self.notify.time.count-i-1], in: dateRange, displayedComponents: .hourAndMinute) {
-                               Text("第\(self.notify.time.count-i)次提醒")
+                               Text("ReminderTimes".localized(lang: lang, self.notify.time.count-i))
                           }
                        }
                    }
@@ -376,7 +378,7 @@ struct TopicView: View {
              tips.append(" ,")
          }
          tips.removeLast()
-          return Text("ReminderHourlyTip".localized(lang: lang, tips)).multilineTextAlignment(.leading)
+         return Text("ReminderHourlyTip".localized(lang: lang, tips)).multilineTextAlignment(.leading)
       }
 
     
@@ -404,11 +406,11 @@ struct TopicView: View {
                 
                 /// 更新需要先删除旧通知
                 if topicID > 0 && !self.oldNotify.identifier.isEmpty {
-                    NotificationManger.removeUserNotification(notify: self.oldNotify)
+                    NotificationManager.removeUserNotification(notify: self.oldNotify)
                 }
                 
                 if isBellMode {
-                    NotificationManger.addUserNotification(topicName: self.topicName, notify: self.notify)
+                    NotificationManager.addUserNotification(topicName: self.topicName, lang: lang, notify: self.notify)
                 }
                 
                 dismiss()

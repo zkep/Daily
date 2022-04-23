@@ -12,7 +12,7 @@ import UserNotifications
 
 
 
-struct NotificationManger {
+struct NotificationManager {
     
     static func addNotification()  {
         let content = UNMutableNotificationContent()

@@ -6,8 +6,8 @@
   
 */
 
-"AppName" = "Daily";
-"Today"="Today";
+"AppName" = "Pudding Daily";
+"Review"="Review";
 "Daily"="Daily";
 "Settings"="Settings";
 
@@ -28,7 +28,8 @@
 "CleanUp"="Clean Up";
 "RecordTime"="Record Time";
 "SystemSettings"="System Settings";
-
+"Preferences"="Preferences";
+"LunarCalendar"="Lunar Calendar";
 
 "DailyReminder"="Daily";
 "WeeklyReminder"="Weekly";
@@ -61,7 +62,6 @@
 "SystemSettings"="System Settings";
 "NotificationSettings"= "Notification settings";
 "HaveALook"="have a look";
-"WhatDidYouDoToday"="What did you do today!";
 "SetRecordItem"="Set Record Item";
 "EventsYouWantToRecord"="Events you want to record";
 "RecordName"="Record Name";
@@ -99,13 +99,21 @@
 "RecordTime"="Record Time";
 "SettingError"="Setting error";
 "NoRecord"="No record";
+"NoRecordAndCreate"="No record yet. Click + add one in the upper right corner";
 "CreateTime"="Create Time";
 "Repeat"="Repeat";
 "ReminderTime"="Reminder Time";
+"ReminderTimes"="%lld th Reminder Time";
 "ReminderHourlyTip"="%@ minute reminders per hour";
+"ReminderDailyTip"="%@th daily Reminder";
 "ReminderWeeklyTip"="%@  weekly reminder";
 "ReminderMonthlyTip"="Reminder on the %@  days of each month";
-"RecordTagDesc"="Tags are the key information you need to fill in every time you record, \ n which can be text, amount, date and other data you pay attention to";
+
+"IsTimeForReminderHourly"="Is time for %@ . %lld minute reminders per hour";
+"IsTimeForReminderDaily"="Is time for %@ .  %lld th daily reminder";
+"IsTimeForReminderWeekly"="Is time for %@ . %@ weekly %lld th reminder";
+"IsTimeForReminderMonthly"="Is time for %@ . %lld th reminder on the %@  days of each month";
+
 "VIP" ="VIP";
 "NoVIP"="No VIP";
 "VIPService"="VIP Service";
