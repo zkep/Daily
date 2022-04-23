@@ -55,7 +55,6 @@ extension NotificationManager {
         content.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
         var requests: Set<UNNotificationRequest> = []
         if notify.type == .hourlyReminder  {
-           
             notify.hour.sorted(by: <).forEach { h in
                 let label = "IsTimeForReminderHourly".localized(lang: lang, topicName, h)
                 content.body = NSString.localizedUserNotificationString(forKey: label, arguments: nil)
@@ -78,9 +77,9 @@ extension NotificationManager {
                     requests.insert(request)
                 } else if notify.type == .weeklyReminder {
                     notify.week.sorted(by: <).forEach { w in
-                        let label = "IsTimeForReminderWeekly".localized(lang: lang, topicName, Calendar.current.weekdaySymbols[w-1], k+1)
+                        let label = "IsTimeForReminderWeekly".localized(lang: lang, topicName, Calendar.current.weekdaySymbols[w], k+1)
                         content.body = NSString.localizedUserNotificationString(forKey: label, arguments: nil)
-                        matchingDate.weekday = w
+                        matchingDate.weekday = w+1
                         let trigger = UNCalendarNotificationTrigger(dateMatching: matchingDate, repeats: true)
                         let request = UNNotificationRequest(identifier: notify.identifier+"_week_"+String(k)+"_"+String(w), content: content, trigger: trigger)
                         requests.insert(request)

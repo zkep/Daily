@@ -255,9 +255,9 @@ struct TopicView: View {
      
       var weeklySection: some View {
            Section {
-                if !self.notify.week.isEmpty {
+               if !self.notify.week.isEmpty {
                    weekTips()
-                }
+               }
                ForEach(Array(Date().getWeekdaySymbols(local: Locale(identifier: lang.description)).enumerated()), id: \.0) {i, item in
                    HStack {
                       Text(item)
@@ -287,7 +287,7 @@ struct TopicView: View {
        var calendar =  Calendar.current
        calendar.locale = NSLocale(localeIdentifier: lang.description) as Locale
        weeks.forEach { v in
-          tips.append(Date().getWeekdaySymbols(local: Locale(identifier: lang.description))[v-1])
+          tips.append(Date().getWeekdaySymbols(local: Locale(identifier: lang.description))[v])
           tips.append(" ,")
        }
        tips.removeLast()
