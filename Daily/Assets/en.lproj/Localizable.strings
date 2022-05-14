@@ -112,7 +112,7 @@
 "IsTimeForReminderHourly"="Is time for %@ . %lld minute reminders per hour";
 "IsTimeForReminderDaily"="Is time for %@ .  %lld th daily reminder";
 "IsTimeForReminderWeekly"="Is time for %@ . %@ weekly %lld th reminder";
-"IsTimeForReminderMonthly"="Is time for %@ . %lld th reminder on the %@  days of each month";
+"IsTimeForReminderMonthly"="Is time for %@ . %lld th reminder on the %lld days of each month";
 
 "VIP" ="VIP";
 "NoVIP"="No VIP";

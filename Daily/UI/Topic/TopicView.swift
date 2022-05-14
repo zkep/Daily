@@ -32,9 +32,6 @@ struct TopicView: View {
         @FocusState private var focus: Focusable?
         @FocusState private var tagfocus: Focusable?
     
-        let dateRange: ClosedRange<Date> = {
-             return Date().getTodayStart()!...Date().getTodayEnd()!
-        }()
     
         @State  var showNotifyTime = false
         @State  var showNotifyRate = false
@@ -241,8 +238,9 @@ struct TopicView: View {
                         }) {
                             Text("ReminderTime")
                        }
+                  
                        ForEach(Array(self.notify.time.enumerated()),  id: \.offset) { i, _ in
-                           DatePicker(selection: self.$notify.time[self.notify.time.count-i-1], in: dateRange, displayedComponents: .hourAndMinute) {
+                           DatePicker(selection: self.$notify.time[self.notify.time.count-i-1], displayedComponents: .hourAndMinute) {
                                Text("ReminderTimes".localized(lang: lang, self.notify.time.count-i))
                           }
                        }

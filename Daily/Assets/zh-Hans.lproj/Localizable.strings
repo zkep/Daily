@@ -112,7 +112,7 @@
 "IsTimeForReminderHourly"="%@时间到了，每小时%lld分钟提醒";
 "IsTimeForReminderDaily"="%@时间到了， 每天第%lld次提醒";
 "IsTimeForReminderWeekly"="%@时间到了，每周%@第%lld次提醒";
-"IsTimeForReminderMonthly"="%@时间到了，每月%@号第%lld次提醒";
+"IsTimeForReminderMonthly"="%@时间到了，每月%lld号第%lld次提醒";
 
 
 

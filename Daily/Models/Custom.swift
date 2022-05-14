@@ -110,7 +110,6 @@ func ParseNotify(str: String) -> Notify {
     let json = JSON(parseJSON: str)
     var notify  =  Notify()
     notify.type =  Reminder(rawValue: json["type"].string ?? "") ?? .dailyReminder
-    
     let timeList = json["time"].array ?? []
     timeList.forEach { v in
         if v.type == .number {
