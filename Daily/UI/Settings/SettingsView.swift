@@ -16,6 +16,7 @@ struct SettingsView: View {
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     @State private var showWebView = false
+    @State private var showVipView = false
     @AppStorage("appColorScheme") var appColorScheme: Int = 0
     @AppStorage("appLanguage") var lang: Language = IsChinese ? .chinese: .english
     @AppStorage("icloud_sync") var icloudSync = true
@@ -60,9 +61,14 @@ struct SettingsView: View {
                     }
                     
                     Section(header: Text("VIP")) {
-                       NavigationLink(destination: VipView()) {
-                           Text("VIPService")
-                       }
+                       Button {
+                           showVipView.toggle()
+                        } label: {
+                            Text("VIPService")
+                        }
+                        .sheet(isPresented: $showVipView) {
+                            VipView()
+                        }
                     }
              }
              .accentColor(.primary)

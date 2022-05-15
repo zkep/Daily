@@ -49,7 +49,6 @@ struct VipInfoView: View {
                    Spacer()
                 
                    buyButton(product)
-                      // .disabled(isPurchased)
                }
            }
            .listStyle(.insetGrouped)

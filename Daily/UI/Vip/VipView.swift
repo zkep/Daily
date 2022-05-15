@@ -17,43 +17,99 @@ struct VipView: View {
     @State var isShowingError: Bool = false
     var productid = "vip.yearly.auto.renewable"
     @AppStorage("icloud_sync") var icloudSync = false
+    @AppStorage("appLanguage") var lang: Language = IsChinese ? .chinese: .english
+    @State var isPurchased: Bool = false
+    @State var showProgress: Bool = false
+    @State var showVipPolicy = false
+    @State var showPrivacyPolicy = false
     
     var body: some View {
-        List {
-            profile
-            Section {
-                HStack {
-                   Text("iCloudSync")
-                    .fontWeight(.light)
-                   Spacer()
-                   Image(systemName: status != nil ? "checkmark" : "xmark")
-                        .foregroundColor(status != nil ? .green : .red)
+        ZStack(alignment: .bottom) {
+            VStack(spacing: 0) {
+                HStack(spacing: 10) {
+                    Spacer()
+                    Button("Back", action: {
+                        dismiss()
+                    })
+                    .frame(alignment: .trailing)
+                    .padding(10)
+                }.padding(10)
+                
+                ZStack {
+                    List {
+                        profile
+                        Section {
+                            HStack {
+                               Text("iCloudSync")
+                                .fontWeight(.light)
+                               Spacer()
+                               Image(systemName: status != nil ? "checkmark" : "xmark")
+                                    .foregroundColor(status != nil ? .green : .red)
+                            }
+                            .contentShape(Rectangle())
+                        }
+                        Section {
+                          if status == nil  {
+                              ForEach(iap.subscriptions, id: \.self) { product in
+                                  HStack {
+                                      VStack(spacing: 5) {
+                                           HStack(alignment: .top) {
+                                               Image(systemName: "crown").foregroundColor(.yellow)
+                                               Text(product.displayName).font(.headline)
+                                           }
+                                           Text(product.description)
+                                           .font(.caption2)
+                                      }
+                          
+                                      Spacer()
+                          
+                                      buyButton(product)
+                                  }
+                                  Text("VIPContinuousYearPackageDescriptionTitle")
+                                  + Text("VIPContinuousYearPackageDescriptionBody")
+                                    .font(.caption)
+                                 Text("VIPInstructionsTitle")
+                                  + Text("VIPInstructionsBody")
+                                    .font(.caption)
+                                 
+                                  Button {
+                                      showVipPolicy.toggle()
+                                  } label: {
+                                      Text("VIPServicePolicy")
+                                          .foregroundColor(.blue)
+                                  }
+                                  .sheet(isPresented: $showVipPolicy) {
+                                      SupportView(model:  WebViewModel(url: "https://sly-brian-365.notion.site/0356497e09424fd494b07c4cf7b30dd9"))
+                                  }
+                                  Button {
+                                      showPrivacyPolicy.toggle()
+                                  } label: {
+                                      Text("PrivacyPolicy")
+                                          .foregroundColor(.blue)
+                                  }
+                                  .sheet(isPresented: $showPrivacyPolicy) {
+                                      SupportView(model:  WebViewModel(url: "https://sly-brian-365.notion.site/Privacy-policy-f823bcf35e774ba591aaeae3affe6924"))
+                                  }
+                              }
+                           }
+                        }
+                     }
+                     .accentColor(.primary)
+                     .listStyle(.insetGrouped)
+                     .onAppear {
+                         Task {
+                             await updateSubscriptionStatus()
+                         }
+                     }
+                     .onChange(of: iap.purchasedIdentifiers) { identifiers in
+                         Task {
+                             await updateSubscriptionStatus()
+                         }
+                     }
                 }
-                .contentShape(Rectangle())
             }
-            Section {
-              if status == nil  {
-                 NavigationLink(destination: VipInfoView() ) {
-                    Text("VIPSubscription")
-                 }
-               }
-               NavigationLink(destination: SubscriptionsView()) {
-                   Text("VIPInformation")
-               }
-            }
-         }
-         .accentColor(.primary)
-         .listStyle(.insetGrouped)
-         .onAppear {
-             Task {
-                 await updateSubscriptionStatus()
-             }
-         }
-         .onChange(of: iap.purchasedIdentifiers) { identifiers in
-             Task {
-                 await updateSubscriptionStatus()
-             }
-         }
+        }
+        .accentColor(.primary)
     }
     
     
@@ -86,6 +142,7 @@ struct VipView: View {
     }
     
     
+    
     @MainActor
     func updateSubscriptionStatus() async {
         do {
@@ -113,6 +170,79 @@ struct VipView: View {
         }
     }
 
+    
+    func buyButton(_ product: Product)-> some View {
+        return Button(action: {
+            showProgress = true
+            Task {
+               await buy(product)
+            }
+        }) {
+            if let subscription = product.subscription {
+                subscribeButton(subscription, product)
+            } else {
+                Text(product.displayPrice)
+                .bold()
+            }
+        }
+        .onAppear {
+            Task {
+                isPurchased = (try? await iap.isPurchased(product.id)) ?? false
+            }
+        }
+        .onChange(of: iap.purchasedIdentifiers) { identifiers in
+            Task {
+                isPurchased = identifiers.contains(product.id)
+            }
+        }
+    }
+   
+   
+   func subscribeButton(_ subscription: Product.SubscriptionInfo, _ product: Product) -> some View {
+       let unit: String
+       let plural = 1 < subscription.subscriptionPeriod.value
+           switch subscription.subscriptionPeriod.unit {
+       case .day:
+           unit = plural ? "\(subscription.subscriptionPeriod.value) days" : "Day"
+       case .week:
+           unit = plural ? "\(subscription.subscriptionPeriod.value) weeks" : "Week"
+       case .month:
+           unit = plural ? "\(subscription.subscriptionPeriod.value) months" : "Month"
+       case .year:
+           unit = plural ? "\(subscription.subscriptionPeriod.value) years" : "Year"
+       @unknown default:
+           unit = "period"
+       }
+
+       return HStack(spacing: 2) {
+           Text(product.displayPrice)
+               .bold()
+           Text("/")
+           Text(unit.localized(lang: lang))
+               .font(.system(size: 12))
+           Spacer()
+           Text("ActivateNow")
+               .foregroundColor(.blue)
+               .bold()
+        }
+   }
+
+   
+   func buy(_ product: Product) async {
+       do {
+           if try await iap.purchase(product) != nil {
+               withAnimation {
+                   isPurchased = true
+               }
+           }
+       } catch IAPError.failedVerification {
+           errorTitle = "PurchaseCouldNotBeVerified"
+           isShowingError = true
+       } catch {
+           print("Failed purchase for \(product.id): \(error)")
+       }
+   }
+    
 }
 
 struct VipView_Previews: PreviewProvider {
