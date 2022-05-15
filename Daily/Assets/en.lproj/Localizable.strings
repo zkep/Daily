@@ -137,10 +137,10 @@
 "SubscriptionBegin"="Your subscription to %@ will begin when your current subscription expires on %@ .";
 "PurchaseCouldNotBeVerified"="Your purchase could not be verified by the App Store.";
 
-"VIPContinuousYearPackageDescriptionTitle"="连续包年套餐说明：";
-"VIPContinuousYearPackageDescriptionBody"="\n 1. 开通连续包年套餐后，每隔一个自然年将自动续费并自动延长一年会员；\n 2. iPhone连续包年费用将从用户的苹果iTunes账号中扣除；\n 3. 如需取消续订，请在扣费前至少24小时关闭自动续费；\n 4. 取消方法：从Home页进入【设置】->点击【iTunes Store与App Store】->点击【Apple ID】,选择【查看Apple ID】->【账号设置】->【订阅】，选择布丁日常连续包年取消订阅即可";
+"VIPContinuousYearPackageDescriptionTitle"="Continuous year package description: ";
+"VIPContinuousYearPackageDescriptionBody"="\n 1. After opening the continuous year package, the membership fee will be automatically renewed every other natural year and automatically extended for one year；\n 2. The annual fee of iPhone continuous package will be deducted from the user's Apple iTunes account；\n 3. To cancel renewal, please turn off automatic renewal at least 24 hours before deduction ；\n 4. Cancellation method: from the home page, enter [settings] - [iTunes Store and app store] - [Apple ID], select [View Apple ID] - [account settings] - [subscription], select pudding daily continuous package, and cancel the subscription";
 
-"VIPInstructionsTitle"="使用说明：";
-"VIPInstructionsBody"="\n 1. 支付过程中不要关闭页面，否则将导致支付不成功；\n 2. VIP自购买之时起最晚30分钟生效；\n 3. 购买之后若还是发现无法正常使用，请尝试重启一下APP";
+"VIPInstructionsTitle"="instructions：";
+"VIPInstructionsBody"="\n 1. Do not close the page during the payment process, otherwise the payment will be unsuccessful ；\n 2.  VIP is effective at the latest 30 minutes from the time of purchase ；\n 3. If you still find that it cannot be used normally after purchase, please try restarting the app.";
 "VIPServicePolicy"="《VIP service policy》";
 "PrivacyPolicy"="《Privacy policy》";
