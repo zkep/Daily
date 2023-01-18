@@ -30,7 +30,7 @@ struct VipInfoView: View {
               iap.requestProducts()
           }
           .alert(isPresented: $isShowingError, content: {
-               Alert(title: Text(errorTitle), message: nil, dismissButton: .default(Text("OK")))
+               Alert(title: Text(errorTitle), message: nil, dismissButton: .default(Text("OK".localized(lang: lang))))
            })
        }
     
@@ -49,7 +49,6 @@ struct VipInfoView: View {
                    Spacer()
                 
                    buyButton(product)
-                      // .disabled(isPurchased)
                }
            }
            .listStyle(.insetGrouped)

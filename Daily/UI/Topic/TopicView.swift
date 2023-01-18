@@ -32,9 +32,6 @@ struct TopicView: View {
         @FocusState private var focus: Focusable?
         @FocusState private var tagfocus: Focusable?
     
-        let dateRange: ClosedRange<Date> = {
-             return Date().getTodayStart()!...Date().getTodayEnd()!
-        }()
     
         @State  var showNotifyTime = false
         @State  var showNotifyRate = false
@@ -61,27 +58,27 @@ struct TopicView: View {
                     }
                 }
                 .listStyle(.insetGrouped)
-                .navigationTitle("SetRecordItem")
+                .navigationTitle("SetRecordItem".localized(lang: lang))
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(trailing: Button {
                      UpsertTopic()
                 } label: {
-                    Text("Confirm").bold()
+                    Text("Confirm".localized(lang: lang)).bold()
                 })
                 .navigationBarItems(leading: Button {
                      dismiss()
                 } label: {
-                    Text("Cancel").bold()
+                    Text("Cancel".localized(lang: lang)).bold()
                 })
             }
             .accentColor(.primary)
         }
     
         var recordSection: some View {
-            Section(header: Text("EventsYouWantToRecord")) {
-                TextField("RecordName", text: $topicName)
+            Section(header: Text("EventsYouWantToRecord".localized(lang: lang))) {
+                TextField("RecordName".localized(lang: lang), text: $topicName)
                 
-                ColorPicker("IconColor", selection: $iconColor)
+                ColorPicker("IconColor".localized(lang: lang), selection: $iconColor)
         
                 Button {
                     withAnimation {
@@ -92,7 +89,7 @@ struct TopicView: View {
                     }
                 } label: {
                     HStack {
-                        Text("SelectIcon")
+                        Text("SelectIcon".localized(lang: lang))
                         Spacer()
                         Image(systemName: topicIcon.isEmpty ? icons[0] : topicIcon)
                             .font(.title)
@@ -120,7 +117,7 @@ struct TopicView: View {
         }
     
        var tagsSection: some View {
-           Section(header: Text("RecordTagDescription")) {
+           Section(header: Text("RecordTagDescription".localized(lang: lang))) {
                 Stepper(onIncrement: {
                     if(self.tags.count < 10) {
                         self.tags.append(Tag())
@@ -133,16 +130,16 @@ struct TopicView: View {
                          focus = .row(id: self.tags.count-1)
                      }
                  }) {
-                     Text("AddTags")
+                     Text("AddTags".localized(lang: lang))
                 }
                 ForEach(Array(self.tags.enumerated().reversed()), id: \.0) { k, v in
                      HStack {
-                         TextField("TagName", text: self.$tags[k].name)
+                         TextField("TagName".localized(lang: lang), text: self.$tags[k].name)
                              .frame(alignment: .leading)
                              .lineLimit(1)
                              .focused($focus, equals: .row(id: k))
                          
-                         Picker("TagType", selection: self.$tags[k].type) {
+                         Picker("TagType".localized(lang: lang), selection: self.$tags[k].type) {
                              ForEach(Tagtype.allCases) { item in
                                  Text(item.name.localized(lang: lang))
                              }
@@ -151,7 +148,7 @@ struct TopicView: View {
                         
                          switch self.tags[k].type {
                          case .int:
-                             TextField("Unit", text: self.$tags[k].unit)
+                             TextField("Unit".localized(lang: lang), text: self.$tags[k].unit)
                          case .option:
                              Stepper(onIncrement: {
                                  if(v.enums.count < 10){
@@ -167,7 +164,7 @@ struct TopicView: View {
                               }) {}
                               VStack {
                                   ForEach(Array(self.tags[k].enums.enumerated()), id: \.0) { j, _ in
-                                      TextField("OptionName", text: self.$tags[k].enums[self.tags[k].enums.count-j-1])
+                                      TextField("OptionName".localized(lang: lang), text: self.$tags[k].enums[self.tags[k].enums.count-j-1])
                                       .frame(alignment: .leading)
                                       .lineLimit(1)
                                       .focused($tagfocus, equals: .row(id: k*10 + j))
@@ -183,16 +180,15 @@ struct TopicView: View {
     
 
        var notifySection: some View {
-           Section(header: Text("More")) {
+           Section(header: Text("More".localized(lang: lang))) {
                
                Toggle(isOn: $isBellMode) {
-                   Label("RegularReminder", systemImage: isBellMode ? "bell" : "bell.slash")
+                   Label("RegularReminder".localized(lang: lang), systemImage: isBellMode ? "bell" : "bell.slash")
                }
                .onChange(of: isBellMode, perform: { newValue in
                    if newValue {
-                       NotificationManger.getNotificationSettings()
+                       NotificationManager.getNotificationSettings()
                    }
-                   // 收起键盘
                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                    if self.notify.time.count == 0 {
                        self.notify.time.append(Date())
@@ -202,7 +198,10 @@ struct TopicView: View {
                if isBellMode {
                    Button {
                        showNotifyRate.toggle()
-                       if self.notify.type == .weeklyReminder{
+                       if showNotifyRate {
+                           UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                       }
+                       if self.notify.type == .weeklyReminder {
                            let week = Calendar.current.component(.weekday, from: Date()) - 1
                            if !self.notify.week.contains(week) {
                                self.notify.week.insert(week)
@@ -210,13 +209,13 @@ struct TopicView: View {
                        }
                    } label: {
                        HStack {
-                           Text("Repeat")
+                           Text("Repeat".localized(lang: lang))
                            Spacer()
                            Text(self.notify.type.name.localized(lang: lang))
                        }
                    }
                    if showNotifyRate {
-                       Picker("Repeat", selection: self.$notify.type) {
+                       Picker("Repeat".localized(lang: lang), selection: self.$notify.type) {
                            ForEach(Reminder.allCases) { item in
                                Text(item.name.localized(lang: lang)).tag(item)
                            }
@@ -237,11 +236,12 @@ struct TopicView: View {
                                 self.notify.time.removeLast()
                              }
                         }) {
-                            Text("ReminderTime")
+                            Text("ReminderTime".localized(lang: lang))
                        }
+                  
                        ForEach(Array(self.notify.time.enumerated()),  id: \.offset) { i, _ in
-                           DatePicker(selection: self.$notify.time[self.notify.time.count-i-1], in: dateRange, displayedComponents: .hourAndMinute) {
-                               Text("第\(self.notify.time.count-i)次提醒")
+                           DatePicker(selection: self.$notify.time[self.notify.time.count-i-1], displayedComponents: .hourAndMinute) {
+                               Text("ReminderTimes".localized(lang: lang, self.notify.time.count-i))
                           }
                        }
                    }
@@ -253,9 +253,9 @@ struct TopicView: View {
      
       var weeklySection: some View {
            Section {
-                if !self.notify.week.isEmpty {
+               if !self.notify.week.isEmpty {
                    weekTips()
-                }
+               }
                ForEach(Array(Date().getWeekdaySymbols(local: Locale(identifier: lang.description)).enumerated()), id: \.0) {i, item in
                    HStack {
                       Text(item)
@@ -285,7 +285,7 @@ struct TopicView: View {
        var calendar =  Calendar.current
        calendar.locale = NSLocale(localeIdentifier: lang.description) as Locale
        weeks.forEach { v in
-          tips.append(Date().getWeekdaySymbols(local: Locale(identifier: lang.description))[v-1])
+          tips.append(Date().getWeekdaySymbols(local: Locale(identifier: lang.description))[v])
           tips.append(" ,")
        }
        tips.removeLast()
@@ -376,7 +376,7 @@ struct TopicView: View {
              tips.append(" ,")
          }
          tips.removeLast()
-          return Text("ReminderHourlyTip".localized(lang: lang, tips)).multilineTextAlignment(.leading)
+         return Text("ReminderHourlyTip".localized(lang: lang, tips)).multilineTextAlignment(.leading)
       }
 
     
@@ -404,11 +404,11 @@ struct TopicView: View {
                 
                 /// 更新需要先删除旧通知
                 if topicID > 0 && !self.oldNotify.identifier.isEmpty {
-                    NotificationManger.removeUserNotification(notify: self.oldNotify)
+                    NotificationManager.removeUserNotification(notify: self.oldNotify)
                 }
                 
                 if isBellMode {
-                    NotificationManger.addUserNotification(topicName: self.topicName, notify: self.notify)
+                    NotificationManager.addUserNotification(topicName: self.topicName, lang: lang, notify: self.notify)
                 }
                 
                 dismiss()

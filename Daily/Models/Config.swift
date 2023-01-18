@@ -23,12 +23,5 @@ public struct Config {
          }
      }
     
-    
-    struct Vip: PropertyFileSettable {
-        enum defaultKeys: String {
-            case ids = "Vipids"
-            case level = "VipLevel"
-        }
-    }
    
 }

@@ -11,7 +11,7 @@ import UserNotifications
 
 
 
-extension NotificationManger {
+extension NotificationManager {
     
     /// 删除通知
     static func  removeUserNotification(notify: Notify) {
@@ -43,20 +43,21 @@ extension NotificationManger {
             }
         }
         if !identifiers.isEmpty {
-            NotificationManger.removeNotifiation(identifiers: identifiers)
+            NotificationManager.removeNotifiation(identifiers: identifiers)
         }
     }
     
     
-    static func addUserNotification(topicName: String ,notify: Notify) {
+    static func addUserNotification(topicName: String, lang: Language, notify: Notify) {
         let content = UNMutableNotificationContent()
         content.title = NSString.localizedUserNotificationString(forKey: topicName, arguments: nil)
         content.sound = UNNotificationSound.default
         content.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
         var requests: Set<UNNotificationRequest> = []
         if notify.type == .hourlyReminder  {
-            notify.hour.forEach { h in
-                content.body = NSString.localizedUserNotificationString(forKey: "\(topicName)时间到了, 来自每小时第 \(h) 分钟的提醒", arguments: nil)
+            notify.hour.sorted(by: <).forEach { h in
+                let label = "IsTimeForReminderHourly".localized(lang: lang, topicName, h)
+                content.body = NSString.localizedUserNotificationString(forKey: label, arguments: nil)
                 var matchingDate = DateComponents()
                 matchingDate.minute = h
                 let trigger = UNCalendarNotificationTrigger(dateMatching: matchingDate, repeats: true)
@@ -64,26 +65,29 @@ extension NotificationManger {
                 requests.insert(request)
             }
         } else {
-            for (k,v) in  notify.time.enumerated() {
+            for (k,v) in  notify.time.sorted(by: <).enumerated() {
                 var matchingDate  = DateComponents()
                 matchingDate.hour  = v.hour
                 matchingDate.minute = v.minute
                 if notify.type == .dailyReminder {
-                    content.body = NSString.localizedUserNotificationString(forKey: "\(topicName)时间到了, 来自每日提醒, 第\(k+1)次提醒", arguments: nil)
+                    let label = "IsTimeForReminderDaily".localized(lang: lang, topicName, k+1)
+                    content.body = NSString.localizedUserNotificationString(forKey: label, arguments: nil)
                     let trigger = UNCalendarNotificationTrigger(dateMatching: matchingDate, repeats: true)
                     let request = UNNotificationRequest(identifier: notify.identifier+"_day_"+String(k), content: content, trigger: trigger)
                     requests.insert(request)
                 } else if notify.type == .weeklyReminder {
-                    notify.week.forEach { w in
-                        content.body = NSString.localizedUserNotificationString(forKey: "\(topicName)时间到了, 来自每周 \(Calendar.current.weekdaySymbols[w]) 的提醒，第\(k+1)次提醒", arguments: nil)
-                        matchingDate.weekday = w
+                    notify.week.sorted(by: <).forEach { w in
+                        let label = "IsTimeForReminderWeekly".localized(lang: lang, topicName, Calendar.current.weekdaySymbols[w], k+1)
+                        content.body = NSString.localizedUserNotificationString(forKey: label, arguments: nil)
+                        matchingDate.weekday = w+1
                         let trigger = UNCalendarNotificationTrigger(dateMatching: matchingDate, repeats: true)
                         let request = UNNotificationRequest(identifier: notify.identifier+"_week_"+String(k)+"_"+String(w), content: content, trigger: trigger)
                         requests.insert(request)
                     }
                 } else if notify.type == .monthlyReminder {
-                    notify.day.forEach { d in
-                        content.body = NSString.localizedUserNotificationString(forKey: "\(topicName)时间到了, 来自每月第 \(d) 天的提醒，第\(k+1)次提醒", arguments: nil)
+                    notify.day.sorted(by: <).forEach { d in
+                        let label = "IsTimeForReminderMonthly".localized(lang: lang, topicName, d, k+1)
+                        content.body = NSString.localizedUserNotificationString(forKey: label, arguments: nil)
                         matchingDate.day = d
                         let trigger = UNCalendarNotificationTrigger(dateMatching: matchingDate, repeats: true)
                         let request = UNNotificationRequest(identifier: notify.identifier+"_month_"+String(k)+"_"+String(d), content: content, trigger: trigger)

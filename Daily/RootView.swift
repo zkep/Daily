@@ -10,6 +10,7 @@ import SwiftUI
 struct RootView: View {
     @EnvironmentObject var appInfo: AppInfo
     private var rootVM = RootViewModel()
+    @AppStorage("appLanguage") var lang: Language = IsChinese ? .chinese: .english
     
     var body: some View {
             SplashScreen(imageSize: CGSize(width: 80, height: 80)) {
@@ -30,7 +31,7 @@ struct RootView: View {
                         Color.clear.frame(height: 44)
                     }
                 } titleView: {
-                   Text("AppName")
+                   Text("AppName".localized(lang: lang))
                        .font(.system(size: 35).bold())
                    
                 } logoView: {

@@ -10,13 +10,8 @@ import SwiftUI
 struct SupportView: View {
 
     @Environment(\.dismiss) var dismiss
-
-    @StateObject var model: WebViewModel = WebViewModel(
-        url: "https://support.qq.com/product/400223",
-        nickname: UserDefaults.SuggestAccount.value(forKey: .nickname) ?? "匿名",
-        avatar: UserDefaults.SuggestAccount.value(forKey: .avatar)  ?? "https://gw.alicdn.com/tps/TB1W_X6OXXXXXcZXVXXXXXXXXXX-400-400.png",
-        openid: UIDevice.current.identifierForVendor?.uuidString ?? "1"
-    )
+    @AppStorage("appLanguage") var lang: Language = IsChinese ? .chinese: .english
+    @StateObject var model: WebViewModel = WebViewModel(url: "https://support.qq.com/product/400223")
    
     var body: some View {
          support
@@ -27,7 +22,7 @@ struct SupportView: View {
             VStack(spacing: 0) {
                 HStack(spacing: 10) {
                     Spacer()
-                    Button("Cancel", action: {
+                    Button("Cancel".localized(lang: lang), action: {
                         dismiss()
                     })
                     .frame(alignment: .trailing)

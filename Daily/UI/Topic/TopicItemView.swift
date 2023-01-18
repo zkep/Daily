@@ -22,6 +22,7 @@ struct TopicItemView: View {
       @State var selectedTab: ItemTimeRange = .lastMonth
       @State var showdayItems: [Item] = []
       @AppStorage("appLanguage") var lang: Language = IsChinese ? .chinese: .english
+      @AppStorage("lunarCalendar") var lunarCalendar = false
     
       var body: some View {
           ZStack {
@@ -187,7 +188,7 @@ struct TopicItemView: View {
                                }
                           }
                        
-                       if lang == .chinese {
+                       if lunarCalendar{
                            Text(day.lunarCalendarDayFormat)
                              .font(.caption2)
                              .fontWeight(.semibold)
@@ -201,7 +202,7 @@ struct TopicItemView: View {
                    VStack {
                       Text(day.calendarFormat)
                           .fontWeight(.semibold)
-                       if lang == .chinese {
+                       if lunarCalendar {
                            Text(day.lunarCalendarDayFormat)
                            .font(.caption2)
                            .fontWeight(.semibold)
@@ -286,10 +287,10 @@ struct TopicItemView: View {
                                         .foregroundColor(Color(hex: self.topic.tint ?? ""))
                                      + Text(" ")
                                     if dates.count >= 2 {
-                                        Text("Start")
+                                        Text("Start".localized(lang: lang))
                                         + Text(" ")
                                         + Text(dates[0])
-                                        Text("End")
+                                        Text("End".localized(lang: lang))
                                         + Text(" ")
                                         + Text(dates[1])
                                     }

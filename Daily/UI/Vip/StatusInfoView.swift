@@ -28,7 +28,7 @@ struct StatusInfoView: View {
     fileprivate func statusDescription() -> String {
         guard case .verified(let renewalInfo) = status.renewalInfo,
               case .verified(let transaction) = status.transaction else {
-            return "AppStoreCouldNotVerifyYourSubscriptionStatus"
+            return "AppStoreCouldNotVerifyYourSubscriptionStatus".localized(lang: lang)
         }
 
         var description = ""

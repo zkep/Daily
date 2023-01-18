@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="ctime" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -18,11 +18,11 @@
         <attribute name="tags" optional="YES" attributeType="String"/>
         <attribute name="tint" optional="YES" attributeType="String"/>
     </entity>
-    <configuration name="Cloud">
+    <configuration name="Cloud" usedWithCloudKit="YES">
         <memberEntity name="Topic"/>
         <memberEntity name="Item"/>
     </configuration>
-    <configuration name="Local">
+    <configuration name="Local" usedWithCloudKit="YES">
         <memberEntity name="Item"/>
         <memberEntity name="Topic"/>
     </configuration>

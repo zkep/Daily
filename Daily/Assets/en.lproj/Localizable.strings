@@ -6,13 +6,14 @@
   
 */
 
-"AppName" = "Daily";
-"Today"="Today";
+"AppName" = "Pudding Daily";
+"Review"="Review";
 "Daily"="Daily";
 "Settings"="Settings";
 
 "Search"="Search";
 "Cancel"="Cancel";
+"Back"="Back";
 "Done"="Done";
 "Delete"="Delete";
 "Pin"="Pin";
@@ -28,7 +29,8 @@
 "CleanUp"="Clean Up";
 "RecordTime"="Record Time";
 "SystemSettings"="System Settings";
-
+"Preferences"="Preferences";
+"LunarCalendar"="Lunar Calendar";
 
 "DailyReminder"="Daily";
 "WeeklyReminder"="Weekly";
@@ -61,7 +63,6 @@
 "SystemSettings"="System Settings";
 "NotificationSettings"= "Notification settings";
 "HaveALook"="have a look";
-"WhatDidYouDoToday"="What did you do today!";
 "SetRecordItem"="Set Record Item";
 "EventsYouWantToRecord"="Events you want to record";
 "RecordName"="Record Name";
@@ -99,13 +100,23 @@
 "RecordTime"="Record Time";
 "SettingError"="Setting error";
 "NoRecord"="No record";
+"NoRecordAndCreate"="No record yet. Click + add one in the upper right corner";
 "CreateTime"="Create Time";
 "Repeat"="Repeat";
 "ReminderTime"="Reminder Time";
+"ReminderTimes"="%lld th Reminder Time";
 "ReminderHourlyTip"="%@ minute reminders per hour";
+"ReminderDailyTip"="%@th daily Reminder";
 "ReminderWeeklyTip"="%@  weekly reminder";
 "ReminderMonthlyTip"="Reminder on the %@  days of each month";
-"RecordTagDesc"="Tags are the key information you need to fill in every time you record, \ n which can be text, amount, date and other data you pay attention to";
+
+"IsTimeForReminderHourly"="Is time for %@ . %lld minute reminders per hour";
+"IsTimeForReminderDaily"="Is time for %@ .  %lld th daily reminder";
+"IsTimeForReminderWeekly"="Is time for %@ . %@ weekly %lld th reminder";
+"IsTimeForReminderMonthly"="Is time for %@ . %lld th reminder on the %lld days of each month";
+
+
+"ActivateNow"="activate now";
 "VIP" ="VIP";
 "NoVIP"="No VIP";
 "VIPService"="VIP Service";
@@ -125,3 +136,11 @@
 "NextBillingDate"="Next billing date: %@";
 "SubscriptionBegin"="Your subscription to %@ will begin when your current subscription expires on %@ .";
 "PurchaseCouldNotBeVerified"="Your purchase could not be verified by the App Store.";
+
+"VIPContinuousYearPackageDescriptionTitle"="Continuous year package description: ";
+"VIPContinuousYearPackageDescriptionBody"="\n 1. After opening the continuous year package, the membership fee will be automatically renewed every other natural year and automatically extended for one year；\n 2. The annual fee of iPhone continuous package will be deducted from the user's Apple iTunes account；\n 3. To cancel renewal, please turn off automatic renewal at least 24 hours before deduction ；\n 4. Cancellation method: from the home page, enter [settings] - [iTunes Store and app store] - [Apple ID], select [View Apple ID] - [account settings] - [subscription], select pudding daily continuous package, and cancel the subscription";
+
+"VIPInstructionsTitle"="instructions：";
+"VIPInstructionsBody"="\n 1. Do not close the page during the payment process, otherwise the payment will be unsuccessful ；\n 2.  VIP is effective at the latest 30 minutes from the time of purchase ；\n 3. If you still find that it cannot be used normally after purchase, please try restarting the app.";
+"VIPServicePolicy"="《VIP service policy》";
+"PrivacyPolicy"="《Privacy policy》";
