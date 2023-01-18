@@ -28,7 +28,7 @@ struct VipView: View {
             VStack(spacing: 0) {
                 HStack(spacing: 10) {
                     Spacer()
-                    Button("Back", action: {
+                    Button("Back".localized(lang: lang), action: {
                         dismiss()
                     })
                     .frame(alignment: .trailing)
@@ -40,7 +40,7 @@ struct VipView: View {
                         profile
                         Section {
                             HStack {
-                               Text("iCloudSync")
+                               Text("iCloudSync".localized(lang: lang))
                                 .fontWeight(.light)
                                Spacer()
                                Image(systemName: status != nil ? "checkmark" : "xmark")
@@ -65,17 +65,17 @@ struct VipView: View {
                           
                                       buyButton(product)
                                   }
-                                  Text("VIPContinuousYearPackageDescriptionTitle")
-                                  + Text("VIPContinuousYearPackageDescriptionBody")
+                                  Text("VIPContinuousYearPackageDescriptionTitle".localized(lang: lang))
+                                  + Text("VIPContinuousYearPackageDescriptionBody".localized(lang: lang))
                                     .font(.caption)
-                                 Text("VIPInstructionsTitle")
-                                  + Text("VIPInstructionsBody")
+                                 Text("VIPInstructionsTitle".localized(lang: lang))
+                                  + Text("VIPInstructionsBody".localized(lang: lang))
                                     .font(.caption)
                                  
                                   Button {
                                       showVipPolicy.toggle()
                                   } label: {
-                                      Text("VIPServicePolicy")
+                                      Text("VIPServicePolicy".localized(lang: lang))
                                           .foregroundColor(.blue)
                                   }
                                   .sheet(isPresented: $showVipPolicy) {
@@ -84,7 +84,7 @@ struct VipView: View {
                                   Button {
                                       showPrivacyPolicy.toggle()
                                   } label: {
-                                      Text("PrivacyPolicy")
+                                      Text("PrivacyPolicy".localized(lang: lang))
                                           .foregroundColor(.blue)
                                   }
                                   .sheet(isPresented: $showPrivacyPolicy) {
@@ -134,7 +134,7 @@ struct VipView: View {
                         .offset(x: 200, y: 0)
                         .scaleEffect(0.6)
                 )
-               Text(status != nil ? "VIP" : "NoVIP")
+               Text(status != nil ? "VIP".localized(lang: lang) : "NoVIP".localized(lang: lang))
                  .font(.title.weight(.semibold))
         }
         .frame(maxWidth: .infinity)
@@ -166,7 +166,7 @@ struct VipView: View {
             status = highestStatus
             icloudSync = status == nil ? false : true
         } catch {
-            print("Could not update subscription status \(error)")
+            print("Could not update subscription status \(error)".localized(lang: lang))
         }
     }
 
@@ -221,7 +221,7 @@ struct VipView: View {
            Text(unit.localized(lang: lang))
                .font(.system(size: 12))
            Spacer()
-           Text("ActivateNow")
+           Text("ActivateNow".localized(lang: lang))
                .foregroundColor(.blue)
                .bold()
         }

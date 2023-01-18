@@ -287,10 +287,10 @@ struct TopicItemView: View {
                                         .foregroundColor(Color(hex: self.topic.tint ?? ""))
                                      + Text(" ")
                                     if dates.count >= 2 {
-                                        Text("Start")
+                                        Text("Start".localized(lang: lang))
                                         + Text(" ")
                                         + Text(dates[0])
-                                        Text("End")
+                                        Text("End".localized(lang: lang))
                                         + Text(" ")
                                         + Text(dates[1])
                                     }

@@ -28,11 +28,11 @@ struct SettingsView: View {
     var body: some View {
         NavigationView  {
              List {
-                   Section(header: Text("LearnMore")) {
+                   Section(header: Text("LearnMore".localized(lang: lang))) {
                         Button {
                             showWebView.toggle()
                         } label: {
-                            Text("SuggestionsFeedback")
+                            Text("SuggestionsFeedback".localized(lang: lang))
                         }
                         .sheet(isPresented: $showWebView) {
                             SupportView()
@@ -40,13 +40,13 @@ struct SettingsView: View {
                     }
                      
         
-                    Section(header: Text("SystemSettings")) {
-                         Picker("DisplayAndBrightness", selection: self.$appColorScheme) {
+                    Section(header: Text("SystemSettings".localized(lang: lang))) {
+                        Picker("DisplayAndBrightness".localized(lang: lang), selection: self.$appColorScheme) {
                             ForEach(appColorSchemes.allCases, id: \.self){ item in
                                 Text(item.name.localized(lang: lang)).tag(item.rawValue)
                             }
                          }
-                         Picker("Language", selection: self.$lang) {
+                         Picker("Language".localized(lang: lang), selection: self.$lang) {
                             ForEach(Language.allCases, id: \.self){ item in
                                 Text(item.name.localized(lang: lang)).tag(item.rawValue)
                             }
@@ -54,17 +54,17 @@ struct SettingsView: View {
                         
                      }
                      
-                     Section(header: Text("Preferences")) {
+                     Section(header: Text("Preferences".localized(lang: lang))) {
                          Toggle(isOn: $lunarCalendar) {
-                             Text("LunarCalendar")
+                             Text("LunarCalendar".localized(lang: lang))
                          }
                     }
                     
-                    Section(header: Text("VIP")) {
+                    Section(header: Text("VIP".localized(lang: lang))) {
                        Button {
                            showVipView.toggle()
                         } label: {
-                            Text("VIPService")
+                            Text("VIPService".localized(lang: lang))
                         }
                         .sheet(isPresented: $showVipView) {
                             VipView()
@@ -73,7 +73,7 @@ struct SettingsView: View {
              }
              .accentColor(.primary)
              .listStyle(.insetGrouped)
-             .navigationTitle("Settings")
+             .navigationTitle("Settings".localized(lang: lang))
              .navigationBarTitleDisplayMode(.automatic)
          }
     }

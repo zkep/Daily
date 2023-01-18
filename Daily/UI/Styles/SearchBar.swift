@@ -12,10 +12,11 @@ struct SearchBar: View {
     @Binding var text: String
     @State private var isEditing = false
     @FocusState private  var searchFocus: Bool
+    @AppStorage("appLanguage") var lang: Language = IsChinese ? .chinese: .english
     
     var body: some View {
         HStack {
-            TextField("Search", text: $text)
+            TextField("Search".localized(lang: lang), text: $text)
                 .padding(8)
                 .padding(.horizontal, 25)
                 .background(Color(.systemGray6))
@@ -54,7 +55,7 @@ struct SearchBar: View {
                         // Dismiss the keyboard
                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                     }) {
-                        Text("Cancel")
+                        Text("Cancel".localized(lang: lang))
                     }
                     .padding(.trailing, 10)
                     .transition(.move(edge: .trailing))

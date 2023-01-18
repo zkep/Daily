@@ -10,7 +10,7 @@ import SwiftUI
 struct SupportView: View {
 
     @Environment(\.dismiss) var dismiss
-
+    @AppStorage("appLanguage") var lang: Language = IsChinese ? .chinese: .english
     @StateObject var model: WebViewModel = WebViewModel(url: "https://support.qq.com/product/400223")
    
     var body: some View {
@@ -22,7 +22,7 @@ struct SupportView: View {
             VStack(spacing: 0) {
                 HStack(spacing: 10) {
                     Spacer()
-                    Button("Cancel", action: {
+                    Button("Cancel".localized(lang: lang), action: {
                         dismiss()
                     })
                     .frame(alignment: .trailing)

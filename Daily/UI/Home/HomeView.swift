@@ -31,7 +31,7 @@ struct HomeView: View {
                  
                  
                  if !appInfo.showSearch && topicVM.fetchTopicCount() > 0 {
-                    Text("OperationNotice")
+                    Text("OperationNotice".localized(lang: lang))
                         .font(.footnote)
                         .foregroundStyle(.linearGradient(colors: [.primary, .primary.opacity(0.5)], startPoint: .topLeading, endPoint: .bottomTrailing))
                         .multilineTextAlignment(.leading)
@@ -86,7 +86,7 @@ struct HomeView: View {
         ZStack {
             let topics = topicVM.fetchTopics(searchText: self.query, isSearch: appInfo.showSearch)
             if topics.count == 0 {
-                Text(appInfo.showSearch ? "" : "NoRecordAndCreate" )
+                Text(appInfo.showSearch ? "" : "NoRecordAndCreate".localized(lang: lang))
                      .font(.footnote)
                      .foregroundStyle(.linearGradient(colors: [.primary, .primary.opacity(0.5)], startPoint: .topLeading, endPoint: .bottomTrailing))
                      .multilineTextAlignment(.leading)
@@ -197,7 +197,7 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             Group {
-                Text("CreateTime")
+                Text("CreateTime".localized(lang: lang))
                    + Text(" ")
                 + Text(ctime.Formatter(local: Locale(identifier: lang.description), dateStyle: .long))
             }

@@ -46,10 +46,10 @@ struct ItemVeiw: View {
                             case .timeRange:
                                 VStack {
                                     DatePicker(selection: self.$tags[index].startDate, in: dateRange, displayedComponents: [.date, .hourAndMinute]) {
-                                        Text("StartTime")
+                                        Text("StartTime".localized(lang: lang))
                                     }
                                     DatePicker(selection: self.$tags[index].endDate, in: dateRange, displayedComponents: [.date, .hourAndMinute]) {
-                                        Text("EndTime")
+                                        Text("EndTime".localized(lang: lang))
                                     }
                                 }
                                 .onChange(of: self.tags[index].startDate, perform: { newValue in
@@ -72,27 +72,27 @@ struct ItemVeiw: View {
                     }
                     HStack {
                         DatePicker(selection: $recordTime, in: dateRange, displayedComponents:  [.date, .hourAndMinute]) {
-                             Text("RecordTime")
+                             Text("RecordTime".localized(lang: lang))
                         }
                     }
                 }
             }
             .accentColor(.primary)
             .listStyle(.insetGrouped)
-            .navigationTitle(itemID > 0 ?"EditRecord" :"AddRecord")
+            .navigationTitle(itemID > 0 ?"EditRecord".localized(lang: lang) :"AddRecord".localized(lang: lang))
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(trailing: Button {
                 upsertItem()
             } label: {
-                Text("Confirm").bold()
+                Text("Confirm".localized(lang: lang)).bold()
             })
             .navigationBarItems(leading: Button {
                 dismiss()
             } label: {
-                Text("Cancel").bold()
+                Text("Cancel".localized(lang: lang)).bold()
             })
-            .alert("SettingError", isPresented: $showAlert) {
-                 Button("OK", role: .cancel) {}
+            .alert("SettingError".localized(lang: lang), isPresented: $showAlert) {
+                 Button("OK".localized(lang: lang), role: .cancel) {}
              }
          }
     }

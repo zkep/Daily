@@ -42,7 +42,7 @@ var IsChinese: Bool {
 
 extension String {
     
-    func localized(lang: Language = .english,  _ args: CVarArg...) -> String {
+    func localized(lang: Language = .chinese,  _ args: CVarArg...) -> String {
        guard let path = Bundle.main.path(forResource: lang.description, ofType: "lproj"), let bundle = Bundle(path: path) else {
          return self
        }

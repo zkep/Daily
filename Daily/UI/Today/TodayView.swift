@@ -64,7 +64,7 @@ struct TodayView: View {
                      buttons: [
                          .cancel(),
                          .default(
-                             Text("Delete"),
+                             Text("Delete".localized(lang: lang)),
                              action: {
                                  topicVM.deleteItem(id: item.id)
                              }
@@ -111,7 +111,7 @@ struct TodayView: View {
             HStack {
                Image(systemName: "eyes")
                     .offset(x: 15)
-               Text("HaveALook")
+               Text("HaveALook".localized(lang: lang))
                  .foregroundColor(.gray)
                  .padding(.horizontal)
                  .offset(x: -8)

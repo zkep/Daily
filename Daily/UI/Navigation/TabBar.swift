@@ -12,6 +12,8 @@ struct TabBar: View {
     @EnvironmentObject var appInfo: AppInfo
     @State var color: Color = .teal
     @State var tabItemWidth: CGFloat = 0
+    @AppStorage("appLanguage") var lang: Language = IsChinese ? .chinese: .english
+    
     var tabs: [TabItem] = []
     
     var body: some View {
@@ -49,7 +51,7 @@ struct TabBar: View {
                         .font(.body.bold())
                         .frame(width: 44, height: 29)
                     
-                    item.text
+                    Text(item.text.localized(lang: lang))
                         .font(.caption2)
                         .lineLimit(1)
                 }

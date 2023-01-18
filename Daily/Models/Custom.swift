@@ -10,7 +10,7 @@ import SwiftyJSON
 
 struct TabItem: Identifiable {
     var id = UUID()
-    var text: Text
+    var text: String
     var icon: String
     var color: Color
 }
@@ -18,9 +18,9 @@ struct TabItem: Identifiable {
 
 
 var TabItems = [
-    TabItem(text: Text("Daily"), icon: "heart.circle", color: .teal),
-    TabItem(text: Text("Review"), icon: "doc.text.image",  color: .teal),
-    TabItem(text: Text("Settings"), icon: "gear",  color: .teal),
+    TabItem(text: "Daily", icon: "heart.circle", color: .teal),
+    TabItem(text: "Review", icon: "doc.text.image",  color: .teal),
+    TabItem(text: "Settings", icon: "gear",  color: .teal),
 ]
 
 

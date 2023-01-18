@@ -58,27 +58,27 @@ struct TopicView: View {
                     }
                 }
                 .listStyle(.insetGrouped)
-                .navigationTitle("SetRecordItem")
+                .navigationTitle("SetRecordItem".localized(lang: lang))
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(trailing: Button {
                      UpsertTopic()
                 } label: {
-                    Text("Confirm").bold()
+                    Text("Confirm".localized(lang: lang)).bold()
                 })
                 .navigationBarItems(leading: Button {
                      dismiss()
                 } label: {
-                    Text("Cancel").bold()
+                    Text("Cancel".localized(lang: lang)).bold()
                 })
             }
             .accentColor(.primary)
         }
     
         var recordSection: some View {
-            Section(header: Text("EventsYouWantToRecord")) {
-                TextField("RecordName", text: $topicName)
+            Section(header: Text("EventsYouWantToRecord".localized(lang: lang))) {
+                TextField("RecordName".localized(lang: lang), text: $topicName)
                 
-                ColorPicker("IconColor", selection: $iconColor)
+                ColorPicker("IconColor".localized(lang: lang), selection: $iconColor)
         
                 Button {
                     withAnimation {
@@ -89,7 +89,7 @@ struct TopicView: View {
                     }
                 } label: {
                     HStack {
-                        Text("SelectIcon")
+                        Text("SelectIcon".localized(lang: lang))
                         Spacer()
                         Image(systemName: topicIcon.isEmpty ? icons[0] : topicIcon)
                             .font(.title)
@@ -117,7 +117,7 @@ struct TopicView: View {
         }
     
        var tagsSection: some View {
-           Section(header: Text("RecordTagDescription")) {
+           Section(header: Text("RecordTagDescription".localized(lang: lang))) {
                 Stepper(onIncrement: {
                     if(self.tags.count < 10) {
                         self.tags.append(Tag())
@@ -130,16 +130,16 @@ struct TopicView: View {
                          focus = .row(id: self.tags.count-1)
                      }
                  }) {
-                     Text("AddTags")
+                     Text("AddTags".localized(lang: lang))
                 }
                 ForEach(Array(self.tags.enumerated().reversed()), id: \.0) { k, v in
                      HStack {
-                         TextField("TagName", text: self.$tags[k].name)
+                         TextField("TagName".localized(lang: lang), text: self.$tags[k].name)
                              .frame(alignment: .leading)
                              .lineLimit(1)
                              .focused($focus, equals: .row(id: k))
                          
-                         Picker("TagType", selection: self.$tags[k].type) {
+                         Picker("TagType".localized(lang: lang), selection: self.$tags[k].type) {
                              ForEach(Tagtype.allCases) { item in
                                  Text(item.name.localized(lang: lang))
                              }
@@ -148,7 +148,7 @@ struct TopicView: View {
                         
                          switch self.tags[k].type {
                          case .int:
-                             TextField("Unit", text: self.$tags[k].unit)
+                             TextField("Unit".localized(lang: lang), text: self.$tags[k].unit)
                          case .option:
                              Stepper(onIncrement: {
                                  if(v.enums.count < 10){
@@ -164,7 +164,7 @@ struct TopicView: View {
                               }) {}
                               VStack {
                                   ForEach(Array(self.tags[k].enums.enumerated()), id: \.0) { j, _ in
-                                      TextField("OptionName", text: self.$tags[k].enums[self.tags[k].enums.count-j-1])
+                                      TextField("OptionName".localized(lang: lang), text: self.$tags[k].enums[self.tags[k].enums.count-j-1])
                                       .frame(alignment: .leading)
                                       .lineLimit(1)
                                       .focused($tagfocus, equals: .row(id: k*10 + j))
@@ -180,10 +180,10 @@ struct TopicView: View {
     
 
        var notifySection: some View {
-           Section(header: Text("More")) {
+           Section(header: Text("More".localized(lang: lang))) {
                
                Toggle(isOn: $isBellMode) {
-                   Label("RegularReminder", systemImage: isBellMode ? "bell" : "bell.slash")
+                   Label("RegularReminder".localized(lang: lang), systemImage: isBellMode ? "bell" : "bell.slash")
                }
                .onChange(of: isBellMode, perform: { newValue in
                    if newValue {
@@ -209,13 +209,13 @@ struct TopicView: View {
                        }
                    } label: {
                        HStack {
-                           Text("Repeat")
+                           Text("Repeat".localized(lang: lang))
                            Spacer()
                            Text(self.notify.type.name.localized(lang: lang))
                        }
                    }
                    if showNotifyRate {
-                       Picker("Repeat", selection: self.$notify.type) {
+                       Picker("Repeat".localized(lang: lang), selection: self.$notify.type) {
                            ForEach(Reminder.allCases) { item in
                                Text(item.name.localized(lang: lang)).tag(item)
                            }
@@ -236,7 +236,7 @@ struct TopicView: View {
                                 self.notify.time.removeLast()
                              }
                         }) {
-                            Text("ReminderTime")
+                            Text("ReminderTime".localized(lang: lang))
                        }
                   
                        ForEach(Array(self.notify.time.enumerated()),  id: \.offset) { i, _ in

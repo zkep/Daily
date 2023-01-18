@@ -14,7 +14,8 @@ struct SubscriptionsView: View {
 
     @State var currentSubscription: Product?
     @State var status: Product.SubscriptionInfo.Status?
-
+    @AppStorage("appLanguage") var lang: Language = IsChinese ? .chinese: .english
+    
     var availableSubscriptions: [Product] {
         iap.subscriptions.filter { $0.id != currentSubscription?.id }
     }
@@ -26,7 +27,7 @@ struct SubscriptionsView: View {
                     StatusInfoView(product: currentSubscription, status: status)
                 }
             } else {
-                Text("NoVIPSubscriptionInformation")
+                Text("NoVIPSubscriptionInformation".localized(lang: lang))
             }
         }
         .toolbar {
@@ -36,7 +37,7 @@ struct SubscriptionsView: View {
                        try? await AppStore.sync()
                     }
                 }, label: {
-                    Text("ResumePurchase")
+                    Text("ResumePurchase".localized(lang: lang))
                 })
              }
          }

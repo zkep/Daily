@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76B9C0C629779E4500FA8DB0 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 76B9C0C529779E4500FA8DB0 /* SwiftyJSON */; };
 		C525377A27E975BF00DDFF44 /* DailyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C525377927E975BF00DDFF44 /* DailyApp.swift */; };
 		C525377E27E975C100DDFF44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C525377D27E975C100DDFF44 /* Assets.xcassets */; };
 		C525378127E975C100DDFF44 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C525378027E975C100DDFF44 /* Preview Assets.xcassets */; };
@@ -45,7 +46,6 @@
 		C566465D27FBEB41009D7DBC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C566465C27FBEB41009D7DBC /* MapKit.framework */; };
 		C566465F27FC699C009D7DBC /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C566465E27FC699C009D7DBC /* SearchBar.swift */; };
 		C569608727EC67320034918D /* PrimaryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C569608627EC67320034918D /* PrimaryEntity.swift */; };
-		C569608E27EC6ED50034918D /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = C569608D27EC6ED50034918D /* SwiftyJSON */; };
 		C569609227EC6F880034918D /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C569609127EC6F880034918D /* AppInfo.swift */; };
 		C569609427EC70320034918D /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C569609327EC70320034918D /* RootView.swift */; };
 		C569609627EC71080034918D /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C569609527EC71080034918D /* RootViewModel.swift */; };
@@ -88,6 +88,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		76B9C0C429779E1100FA8DB0 /* SwiftyJSON-master */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "SwiftyJSON-master"; path = "../Downloads/SwiftyJSON-master"; sourceTree = "<group>"; };
 		C525377927E975BF00DDFF44 /* DailyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyApp.swift; sourceTree = "<group>"; };
 		C525377D27E975C100DDFF44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C525378027E975C100DDFF44 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -138,7 +139,6 @@
 		C58765682806F8BA00D41DCF /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		C587656B2806F95300D41DCF /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C5A46F9527F0929D004160B1 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		C5A7ECC92808923A003C0736 /* SwiftyJSON-master */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "SwiftyJSON-master"; sourceTree = "<group>"; };
 		C5A7ECCA28089319003C0736 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		C5A7ECCC2808935E003C0736 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		C5A7ECCE280894DB003C0736 /* PropertyFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyFile.swift; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 			files = (
 				C587656C2806F95300D41DCF /* CloudKit.framework in Frameworks */,
 				C566465D27FBEB41009D7DBC /* MapKit.framework in Frameworks */,
-				C569608E27EC6ED50034918D /* SwiftyJSON in Frameworks */,
+				76B9C0C629779E4500FA8DB0 /* SwiftyJSON in Frameworks */,
 				C5C0E00D2813851F00538E4B /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,10 +185,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		76B9C0C329779E1100FA8DB0 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				76B9C0C429779E1100FA8DB0 /* SwiftyJSON-master */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		C525376D27E975BF00DDFF44 = {
 			isa = PBXGroup;
 			children = (
-				C5A7ECC92808923A003C0736 /* SwiftyJSON-master */,
+				76B9C0C329779E1100FA8DB0 /* Packages */,
 				C525377827E975BF00DDFF44 /* Daily */,
 				C525378E27E975C100DDFF44 /* DailyTests */,
 				C525379827E975C100DDFF44 /* DailyUITests */,
@@ -416,7 +424,7 @@
 			);
 			name = Daily;
 			packageProductDependencies = (
-				C569608D27EC6ED50034918D /* SwiftyJSON */,
+				76B9C0C529779E4500FA8DB0 /* SwiftyJSON */,
 			);
 			productName = Daily;
 			productReference = C5A7ECD828089729003C0736 /* Daily.app */;
@@ -956,7 +964,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C569608D27EC6ED50034918D /* SwiftyJSON */ = {
+		76B9C0C529779E4500FA8DB0 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SwiftyJSON;
 		};
